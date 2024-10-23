@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import AuthButtons from "./AuthButtons";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
-const page =async () => {
+const page = async () => {
   const { isAuthenticated } = getKindeServerSession();
   if (await isAuthenticated()) return redirect("/");
 

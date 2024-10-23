@@ -6,6 +6,14 @@ import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { useTheme } from "next-themes";
 
+// Define a type for the emoji based on its expected properties
+interface Emoji {
+  native: string; // or whatever properties you expect
+  emoji?: string; // optional, adjust based on what you need
+  id?: string; // optional, adjust based on what you need
+}
+
+
 interface EmojiPickerProps {
   onChange: (emoji: string) => void;
 }
@@ -24,7 +32,11 @@ const EmojiPicker = ({ onChange }: EmojiPickerProps) => {
           data={data}
           maxFrequentRows={1}
           theme={theme === "dark" ? "dark" : "light"}
-          onEmojiSelect={(emoji: any) => onChange(emoji.native)}
+          // onEmojiSelect={(emoji: Emoji) => onChange(emoji.native)}
+          onEmojiSelect={(emoji: Emoji) => {
+            const emojiCharacter = emoji.native || emoji.emoji || emoji.id || ''; // Adjust as needed
+            onChange(emojiCharacter);
+          }}
         />
       </PopoverContent>
     </Popover>

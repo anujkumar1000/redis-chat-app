@@ -1,4 +1,3 @@
-import { USERS } from "@/db/dummy";
 import { ScrollArea } from "./ui/scroll-area";
 import {
   Tooltip,
@@ -15,7 +14,7 @@ import { usePreferences } from "@/store/usePreferences";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { User } from "@/db/dummy";
 import { useSelectedUser } from "@/store/useSelectedUser";
-import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -27,8 +26,7 @@ const Sidebar = ({ isCollapsed, users }: SidebarProps) => {
   const { soundEnabled } = usePreferences();
   const { setSelectedUser, selectedUser } = useSelectedUser();
 
-const {user} = useKindeBrowserClient()
-  
+  const { user } = useKindeBrowserClient();
 
   return (
     <div className="group relative flex flex-col h-full gap-4 p-2 data-[collapsed=true]:p-2  max-h-full overflow-auto bg-background">
@@ -115,7 +113,7 @@ const {user} = useKindeBrowserClient()
                 />
               </Avatar>
               <p className="font-bold">
-              {user?.given_name} {user?.family_name}
+                {user?.given_name} {user?.family_name}
               </p>
             </div>
           )}
